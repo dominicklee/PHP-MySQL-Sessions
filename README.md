@@ -32,29 +32,33 @@ This solution can be easily integrated with your existing PHP code that uses PHP
 ## Usage ##
 An example script called `example.php` has been provided for your convenience. This contains all the basic functionality you would need for storing, retrieving, and destroying a session. One thing to note is that you do not have to call `session_start()` on your code as that is already taken care of inside the `mysql.sessions.php` class.
 
-- **Declarations** (include these on the top of your PHP):
+**Declarations** (include these on the top of your PHP):<br />
 	```php
 	include("database.class.php");	//Include MySQL database class
 	include("mysql.sessions.php");	//Include PHP MySQL sessions
 	$session = new Session();	//Start a new PHP MySQL session
 	```
-- **Storing in a session variable**:
+<br />
+**Storing in a session variable**:<br />
 	```php
 	//Store variable as usual
 	$_SESSION['user'] = "johnsmith@example.com";
 	```
-- **Retrieving session variable**:
+<br />
+**Retrieving session variable**:<br />
 	```php
 	//Show stored user
 	echo $_SESSION['user'];
 	```
-- **Unset and Destroy** (use these for signing out a user):
+<br />
+**Unset and Destroy** (use these for signing out a user):<br />
 	```php
 	//Clear session data (only data column)
 	session_unset();
 	//Destroy the entire session
 	session_destroy();
 	```
+<br />
 ## Troubleshooting ##
 If for some reason your code does not work, you can add the following lines to the top of your PHP script to show the errors:
 	```php
