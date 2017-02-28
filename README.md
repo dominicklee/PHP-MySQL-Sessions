@@ -7,10 +7,24 @@ This solution can be easily integrated with your existing PHP code that uses PHP
 
 1. Upload the files in this repository to your Apache server running PHP. You can store these files inside any resource folder of your desire. It is not recommended that these files be located in the root directory since it contains some sensitive database information.
 
-2. Edit the file `database.class.php` and change the following variables to your existing database. 
+2. Create a new MySQL database if you do not already have an existing one. Note down your MySQL credentials. Go to PHPMyAdmin or your database manager and run the following command:
+
+```mysql
+CREATE TABLE sessions
+(
+	id varchar(32) NOT NULL,
+	access int(10) unsigned,
+	data text,
+	PRIMARY KEY (id)
+);
+```
+
+3. Edit the file `database.class.php` and change the following variables to your existing database. 
 ```php
 define("DB_HOST", "localhost");
 define("DB_USER", "yourusername");
 define("DB_PASS", "1234567890");
 define("DB_NAME", "yourdbname");
 ```
+
+4. Make sure PHP has sufficient privileges and make sure that your MySQL server accepts connections if separate from your localhost.
