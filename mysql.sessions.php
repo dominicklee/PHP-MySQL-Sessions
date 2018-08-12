@@ -34,12 +34,12 @@ class Session {
 
 		// Set handler to overide SESSION
 		session_set_save_handler(
-		array($this, "_open"),
-		array($this, "_close"),
-		array($this, "_read"),
-		array($this, "_write"),
-		array($this, "_destroy"),
-		array($this, "_gc")
+			array($this, "_open"),
+			array($this, "_close"),
+			array($this, "_read"),
+			array($this, "_write"),
+			array($this, "_destroy"),
+			array($this, "_gc")
 		);
 
 		// Start the session
@@ -47,9 +47,10 @@ class Session {
 	}
 	public function _open(){
 		// If successful
-		if($this->db){
-		// Return True
-		return true;
+		if($this->db)
+		{
+			// Return True
+			return true;
 		}
 		// Return False
 		return false;
@@ -57,9 +58,10 @@ class Session {
 	public function _close(){
 		// Close the database connection
 		// If successful
-		if($this->db->close()){
-		// Return True
-		return true;
+		if($this->db->close())
+		{
+			// Return True
+			return true;
 		}
 		// Return False
 		return false;
@@ -71,15 +73,18 @@ class Session {
 		$this->db->bind(':id', $id);
 		// Attempt execution
 		// If successful
-		if($this->db->execute()){
-		// Save returned row
-		$row = $this->db->single();
-		// Return the data
-		return $row['data'];
-		}else{
+		if($this->db->execute())
+		{
+			if($this->db->rowCount() > 0)
+			{
+				// Save returned row
+				$row = $this->db->single();
+				// Return the data
+				return $row['data'];
+			}
+		}
 		// Return an empty string
 		return '';
-		}
 	}
 	public function _write($id, $data){
 		// Create time stamp
@@ -92,9 +97,10 @@ class Session {
 		$this->db->bind(':data', $data);
 		// Attempt Execution
 		// If successful
-		if($this->db->execute()){
-		// Return True
-		return true;
+		if($this->db->execute())
+		{
+			// Return True
+			return true;
 		}
 		// Return False
 		return false;
@@ -106,9 +112,10 @@ class Session {
 		$this->db->bind(':id', $id);
 		// Attempt execution
 		// If successful
-		if($this->db->execute()){
-		// Return True
-		return true;
+		if($this->db->execute())
+		{
+			// Return True
+			return true;
 		}
 		// Return False
 		return false;
@@ -121,9 +128,10 @@ class Session {
 		// Bind data
 		$this->db->bind(':old', $old);
 		// Attempt execution
-		if($this->db->execute()){
-		// Return True
-		return true;
+		if($this->db->execute())
+		{
+			// Return True
+			return true;
 		}
 		// Return False
 		return false;
