@@ -11,7 +11,7 @@
 	define("DB_USER", "yourusername");
 	define("DB_PASS", "1234567890");
 	define("DB_NAME", "yourdbname");
-	define("DB_OPTIONS", $options = array(
+	define("DB_OPTIONS", array(
 		PDO::ATTR_PERSISTENT    => true,
 		PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION
 	));
