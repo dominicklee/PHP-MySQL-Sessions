@@ -11,12 +11,17 @@
 	define("DB_USER", "yourusername");
 	define("DB_PASS", "1234567890");
 	define("DB_NAME", "yourdbname");
+	define("DB_OPTIONS", $options = array(
+		PDO::ATTR_PERSISTENT    => true,
+		PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION
+	));
 
 	class Database{
 		private $host      = DB_HOST;
 		private $user      = DB_USER;
 		private $pass      = DB_PASS;
 		private $dbname    = DB_NAME;
+		private $options    = DB_OPTIONS;
 		private $dbh;
 		private $error;
 		private $stmt;
@@ -24,14 +29,9 @@
 		public function __construct(){
 			// Set DSN
 			$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
-			// Set options
-			$options = array(
-				PDO::ATTR_PERSISTENT    => true,
-				PDO::ATTR_ERRMODE       => PDO::ERRMODE_EXCEPTION
-			);
 			// Create a new PDO instanace
 			try{
-				$this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+				$this->dbh = new PDO($dsn, $this->user, $this->pass, $this->options);
 			}
 			// Catch any errors
 			catch(PDOException $e){
